@@ -1,0 +1,64 @@
+#include<stdio.h>
+int main()
+{
+	int k;
+	int m[10][10];
+	int c, x1, y1, x2, y2;
+	int a = 0;
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			m[i][j] = 0;
+		}
+	}
+	scanf("%d", &k);
+	for (int b = 1; b <= k; b++)
+	{
+		scanf("%d %d %d %d %d", &c, &x1, &y1, &x2, &y2);
+		if (c == 0)
+		{
+			for (int j = x1; j <= x2; j++)
+			{
+				for (int l = y1; l <= y2; l++)
+				{
+					if (m[j][l] == 0)
+					{
+						m[j][l]++;
+					}
+				}
+			}
+		}
+		else
+		{
+			for (int j = x1; j <= x2; j++)
+			{
+				for (int l = y1; l <= y2; l++)
+				{
+					if (m[j][l] >= 4 && m[j][l] <= 6)
+					{
+						if (m[j][l] == 4)
+							a = a + 62000;
+						else if (m[j][l] == 5)
+							a = a + 68000;
+						else
+							a = a + 72000;
+						m[j][l] = 0;
+					}
+					else if (m[j][l] >= 7)
+						m[j][l] = 0;
+
+				}
+			}
+		}
+		for (int j = 0; j < 10; j++)
+		{
+			for (int l = 0; l < 10; l++)
+			{
+				if (!(m[j][l] == 0))
+					m[j][l] = m[j][l] + 1;
+			}
+		}
+	}
+	printf("%d", a);
+}
